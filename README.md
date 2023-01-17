@@ -53,8 +53,9 @@ cd ..  # 返回项目根目录
 - 创建环境
 
 ```bash
-conda create -n amp_prediction python=3.6
+conda create -y -n amp_prediction python=3.6 certifi=2022.12.7
 conda activate amp_prediction
+
 pip install -r requirement.txt
 
 cd bert_sklearn
@@ -62,7 +63,7 @@ pip install .
 cd .. && cp -r bert_sklearn/ ~/miniconda3/envs/amp_prediction/lib/python3.6/site-packages/
 ```
 
-
+如上述操作成功完成后，下面仍有包报错问题，参考测试时导出的包列表 `requirement_wlabworkflow_reference.txt` 进行手动调试
 
 - 序列格式化
 
