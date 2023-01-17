@@ -103,3 +103,9 @@ venv.bak/
 # mypy
 .mypy_cache/
 
+# BERT Model
+/Models/bert.bin
+
+# Customized Scripts
+/customized_scripts
+!/customized_scripts/scatterplot3D.py

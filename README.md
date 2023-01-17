@@ -16,3 +16,89 @@ pip install .
 
 
 
+# WLab-Workflow
+
+- 下载资源
+
+```bash
+git clone https://github.com/BioGavin/c_AMPs-prediction.git
+cd c_AMPs-prediction/
+```
+
+- 下载 Bert 模型
+
+从该链接下载 Bert 模型：https://www.dropbox.com/sh/o58xdznyi6ulyc6/AABLckEnxP54j2X7BrGybhyea?dl=0
+
+下载的文件 `bert.bin` 放至 `Models` 路径下
+
+校验模型的完整性
+
+```bash
+cd Models
+md5sum -c md5.txt
+```
+
+输出如下结果表示校验通过，否则说明模型文件下载不完整
+
+```
+lstm.h5: OK
+att.h5: OK
+bert.bin: OK
+```
+
+```bash
+cd ..  # 返回项目根目录
+```
+
+- 创建环境
+
+```bash
+conda create -n amp_prediction python=3.6
+conda activate amp_prediction
+pip install -r requirement.txt
+
+cd bert_sklearn
+pip install .
+cd .. && cp -r bert_sklearn/ ~/miniconda3/envs/amp_prediction/lib/python3.6/site-packages/
+```
+
+
+
+- 序列格式化
+
+```bash
+cd Data
+perl ../script/format.pl len5seq.fasta none > len5seq.txt
+```
+
+- Attention 模型预测
+
+```bash
+python3 ../script/prediction_attention.py len5seq.txt len5seq.att.txt
+```
+
+- LSTM 模型预测
+
+```bash
+python3 ../script/prediction_lstm.py len5seq.txt len5seq.lstm.txt
+```
+
+- Bert 模型预测
+
+```bash
+python3 ../script/prediction_bert.py len5seq.fasta len5seq.bert.txt
+```
+
+- 整合结果
+
+```bash
+python3 ../script/result.py len5seq.att.txt len5seq.lstm.txt len5seq.bert.txt len5seq.fasta len5seq.result.tsv
+```
+
+- 结果可视化
+
+```bash
+pip install matplotlib
+python3 ../customized_scripts/scatterplot3D.py len5seq.att.txt len5seq.lstm.txt len5seq.bert.txt fig.svg
+```
+

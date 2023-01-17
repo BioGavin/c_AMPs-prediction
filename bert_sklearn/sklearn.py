@@ -421,7 +421,7 @@ class BaseBertEstimator(BaseEstimator):
         """
 
         print("Loading model from %s..."%(restore_file))
-        state = torch.load(restore_file)
+        state = torch.load(restore_file, map_location=torch.device('cpu'))
 
         params = state['params']
 
@@ -637,7 +637,7 @@ def load_model(filename):
     """
     Load BertClassifier or BertRegressor from a disk file.
     """
-    state = torch.load(filename)
+    state = torch.load(filename, map_location=torch.device('cpu'))
     class_name = state['class_name']
 
     classes = {
