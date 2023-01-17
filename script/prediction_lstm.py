@@ -5,7 +5,7 @@ from keras.models import load_model
 from numpy import loadtxt, savetxt
 from sys import argv
 
-model = load_model('../Moldes/lstm.h5')
+model = load_model('../Models/lstm.h5')
 x = loadtxt(argv[1], delimiter=",")
 
 preds = model.predict(x)

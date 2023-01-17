@@ -4,9 +4,8 @@ from sys import argv
 environ["CUDA_VISIBLE_DEVICES"] = "1"
 seq_path = argv[1]
 
-from bert_sklearn import BertClassifier
-from bert_sklearn import load_model
- 
+# from bert_sklearn import BertClassifier
+from bert_sklearn.sklearn import load_model
 import numpy as np
 import pandas as pd
 
