@@ -53,7 +53,7 @@ cd ..  # 返回项目根目录
 - 创建环境
 
 ```bash
-conda create -y -n amp_prediction python=3.6 certifi=2022.12.7
+conda create -y -n amp_prediction python=3.7 certifi=2022.12.7
 conda activate amp_prediction
 
 pip install -r requirement.txt
