@@ -68,6 +68,12 @@ cd .. && cp -r bert_sklearn/ ~/miniconda3/envs/amp_prediction/lib/python3.7/site
 - 序列格式化
 
 ```bash
+# 如果有长度超过300的序列，用如下代码删除
+seqkit seq -M 300 -g input.faa > output.faa
+# 如果fasta文件中的序列是分行的，会导致格式化出现问题，用如下代码将序列转换成一行
+seqkit seq -w 0 input.faa > output.faa
+
+# 格式化
 cd Data
 perl ../script/format.pl len5seq.fasta none > len5seq.txt
 ```
