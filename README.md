@@ -60,7 +60,7 @@ pip install -r requirement.txt
 
 cd bert_sklearn
 pip install .
-cd .. && cp -r bert_sklearn/ ~/miniconda3/envs/amp_prediction/lib/python3.6/site-packages/
+cd .. && cp -r bert_sklearn/ ~/miniconda3/envs/amp_prediction/lib/python3.7/site-packages/
 ```
 
 如上述操作成功完成后，下面仍有包报错问题，参考测试时导出的包列表 `requirement_wlabworkflow_reference.txt` 进行手动调试
