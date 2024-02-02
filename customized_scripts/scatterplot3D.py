@@ -4,7 +4,7 @@ import sys
 import matplotlib.pyplot as plt
 
 
-att_file, lstm_file, bert_file, output_svg = sys.argv[1:5]
+att_file, lstm_file, bert_file, output_fig = sys.argv[1:5]
 
 # 1.0 初始化数据
 # f(x,y,z) = v
@@ -50,4 +50,4 @@ ax.set_xlabel('attention')
 ax.set_ylabel('lstm')
 ax.set_zlabel('bert')
 # 2.3显示
-plt.savefig(output_svg, format='svg')
+plt.savefig(output_fig)
