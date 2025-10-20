@@ -14,11 +14,16 @@ result_output = sys.argv[5]
 # Read in the prediction files and store the results in a hash table
 # with the line number as the key and the prediction as the value
 results = {}
+att_results = []
+lstm_results = []
+bert_results = []
 
 # Read in att_bact.txt
 with open(att_bact_file, 'r') as f:
     for i, line in enumerate(f):
         line = line.strip()
+        line = float(line)
+        att_results.append(line)
         if float(line) > 0.5:
             results[i] = 1
         else:
@@ -28,6 +33,8 @@ with open(att_bact_file, 'r') as f:
 with open(lstm_bact_file, 'r') as f:
     for i, line in enumerate(f):
         line = line.strip()
+        line = float(line)
+        lstm_results.append(line)
         if float(line) > 0.5:
             results[i] += 1
         else:
@@ -37,13 +44,15 @@ with open(lstm_bact_file, 'r') as f:
 with open(bert_bact_file, 'r') as f:
     for i, line in enumerate(f):
         line = line.strip()
+        line = float(line)
+        bert_results.append(line)
         if float(line) > 0.5:
             results[i] += 1
         else:
             results[i] += 0
 
 # Print the number of sequences that were processed
-print("There are {} sequences need to predictive.".format(len(results)))
+print("There are {} sequences need to predictive.".format(len(att_results)))
 print("name;AMP_prediction(1/0);")
 
 # Read in the sequence file and append the prediction to each sequence
@@ -65,6 +74,9 @@ with open(sequence_file, 'r') as f:
                 "header": header,
                 "seq": seq,
                 "length": length,
+                "att_score": att_results[int(idx/2)],
+                "lstm_score": lstm_results[int(idx/2)],
+                "bert_score": bert_results[int(idx/2)],
                 "prediction": prediction
             })
 
